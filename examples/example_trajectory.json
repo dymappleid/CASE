@@ -1,0 +1,42 @@
+{
+  "sample_id": "synthetic-001",
+  "video_id": "synthetic-video",
+  "duration_group": "long",
+  "video_duration_sec": 420.0,
+  "has_subtitle": true,
+  "native_prediction": "B",
+  "native_cost": {
+    "text_input_token": 8500,
+    "text_output_token": 900,
+    "text_token": 9400,
+    "visual_token": 3100,
+    "llm_calls": 4,
+    "tool_calls": 3
+  },
+  "checkpoints": [
+    {
+      "latest_tool": "overview",
+      "evidence_char_count": 1800,
+      "consumed_cost": {"text_token": 1800, "visual_token": 700},
+      "decision_sunk_cost": {"text_token": 2200, "visual_token": 700},
+      "probe_cost": {"text_token": 180, "visual_token": 0},
+      "calibrated_distribution": {"A": 0.18, "B": 0.48, "C": 0.20, "D": 0.14}
+    },
+    {
+      "latest_tool": "focus",
+      "evidence_char_count": 3100,
+      "consumed_cost": {"text_token": 4400, "visual_token": 1800},
+      "decision_sunk_cost": {"text_token": 4850, "visual_token": 1800},
+      "probe_cost": {"text_token": 205, "visual_token": 0},
+      "calibrated_distribution": {"A": 0.10, "B": 0.69, "C": 0.12, "D": 0.09}
+    },
+    {
+      "latest_tool": "answer",
+      "evidence_char_count": 4100,
+      "consumed_cost": {"text_token": 9400, "visual_token": 3100},
+      "decision_sunk_cost": {"text_token": 9400, "visual_token": 3100},
+      "probe_cost": {"text_token": 0, "visual_token": 0},
+      "calibrated_distribution": {"A": 0.08, "B": 0.76, "C": 0.09, "D": 0.07}
+    }
+  ]
+}
