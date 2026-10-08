@@ -5,13 +5,6 @@
 
 Official implementation of **[CASE: Cost-Aware Stopping for Efficient Long-Video Agents](https://arxiv.org/abs/2610.05400)**.
 
-[Yiming Du](https://github.com/dymappleid)\*, [Chenghao Liu](https://github.com/MrCapricornLiu)\*†, Zhiyuan Liu, Fangxing Zheng, Zhao Wang, Junnan Nie, Songfang Huang‡
-
-Peking University
-
-\* Equal contribution. † Project leader. ‡ Corresponding author.
-
-Project led by [Chenghao Liu](https://github.com/MrCapricornLiu).
 
 ## 💡 Overview
 
