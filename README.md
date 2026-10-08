@@ -1,4 +1,19 @@
-# CASE
+# 🎬 CASE: Cost-Aware Stopping for Efficient Long-Video Agents
+
+[![Paper](https://img.shields.io/badge/Paper-arXiv%3A2610.05400-b31b1b.svg)](https://arxiv.org/abs/2610.05400)
+[![License](https://img.shields.io/badge/License-MIT-green.svg)](./LICENSE)
+
+Official implementation of **[CASE: Cost-Aware Stopping for Efficient Long-Video Agents](https://arxiv.org/abs/2610.05400)**.
+
+[Yiming Du](https://github.com/dymappleid)\*, [Chenghao Liu](https://github.com/MrCapricornLiu)\*†, Zhiyuan Liu, Fangxing Zheng, Zhao Wang, Junnan Nie, Songfang Huang‡
+
+Peking University
+
+\* Equal contribution. † Project leader. ‡ Corresponding author.
+
+Project led by [Chenghao Liu](https://github.com/MrCapricornLiu).
+
+## 💡 Overview
 
 CASE (**C**ost-**A**ware **S**topping for **E**fficient Long-Video Agents) is a
 termination controller for tool-guided long-video agents. At each causal
@@ -6,17 +21,27 @@ checkpoint, CASE decides whether to stop with the evidence collected so far or
 continue the host agent's native search. The host remains responsible for which
 evidence to acquire.
 
-## Installation
+### Highlights
+
+- **Lightweight stopping:** Ridge-based controllers weigh answer quality against the cost of continued search, with the host VLM kept frozen.
+- **Plug-in integration:** Hooks for VideoSeek and AVP preserve the host's evidence-acquisition policy.
+- **Cross-benchmark transfer:** Frozen policies transfer from Video-MME to LongVideoBench and MLVU without refitting.
+
+See the [paper](https://arxiv.org/abs/2610.05400) for the formulation, evaluation protocol, and results.
+
+## ⚙️ Installation
 
 ```bash
+git clone https://github.com/dymappleid/CASE.git
+cd CASE
 python -m pip install -e .
 ```
 
-The core package depends only on NumPy. Online execution uses an
+Python 3.10 or later is required. The core package depends only on NumPy. Online execution uses an
 OpenAI-compatible multimodal endpoint. Set `CASE_API_KEY` only when the endpoint
 requires bearer authentication.
 
-## Quick start
+## 🚀 Quick start
 
 The repository includes a synthetic trajectory and six frozen controllers for
 VideoSeek and AVP.
@@ -44,7 +69,7 @@ The same example is available as:
 python examples/demo.py
 ```
 
-## Repository layout
+## 📦 Repository layout
 
 ```text
 case_stopping/
@@ -62,7 +87,7 @@ examples/
   example_trajectory.json
 ```
 
-## Trajectory format
+## 🗂️ Trajectory format
 
 A trajectory stores the native terminal prediction and cost together with its
 causal decision checkpoints. The last checkpoint represents the native terminal
@@ -87,7 +112,7 @@ Training and calibration additionally use `gold`, per-checkpoint `probe_logits`,
 `finalizer_prediction`, and `finalizer_cost`. These development-only fields are
 not read by `apply_policy`.
 
-## Fitting and selection
+## 🧠 Fitting and selection
 
 The fitting API mirrors the method pipeline:
 
@@ -108,7 +133,7 @@ grid, Ridge regularization, activation rule, and calibration selection rule.
 `configs/videomme_split.json` records the fixed 50/100/750 video-disjoint
 Video-MME split.
 
-## Online integration
+## 🔌 Online integration
 
 `OnlineController` is called after the host planner proposes its next visual
 action and before that action executes. A CONTINUE decision leaves the native
@@ -119,8 +144,28 @@ choice-constrained native-prefix finalizer.
 service ports, local paths, and other deployment-specific values are not part of
 the package.
 
-## Data and model assets
+## 📁 Data and model assets
 
 Benchmark media and model weights are not redistributed. The repository contains
 only dataset identifiers, method configuration, and the fitted CASE controller
 parameters needed to load the included policies.
+
+## 📖 Citation
+
+If you find CASE useful in your research, please cite:
+
+```bibtex
+@article{du2026case,
+  title={CASE: Cost-Aware Stopping for Efficient Long-Video Agents},
+  author={Du, Yiming and Liu, Chenghao and Liu, Zhiyuan and Zheng, Fangxing and Wang, Zhao and Nie, Junnan and Huang, Songfang},
+  journal={arXiv preprint arXiv:2610.05400},
+  year={2026},
+  url={https://arxiv.org/abs/2610.05400}
+}
+```
+
+## 🙏 Acknowledgements
+
+We thank the authors of VideoSeek and Active Video Perception (AVP), the host
+agents used in our evaluation, and the creators of Video-MME, LongVideoBench,
+and MLVU for their contributions to long-video understanding research.
